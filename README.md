@@ -1,26 +1,22 @@
-[![Code Climate](https://codeclimate.com/github/krystalcampioni/vue-hotel-datepicker/badges/gpa.svg)](https://codeclimate.com/github/krystalcampioni/vue-hotel-datepicker/)
-[![Issue Count](https://codeclimate.com/github/krystalcampioni/vue-hotel-datepicker/badges/issue_count.svg)](https://codeclimate.com/github/krystalcampioni/vue-hotel-datepicker)
-[![dependencies Status](https://david-dm.org/krystalcampioni/vue-hotel-datepicker/status.svg)](https://david-dm.org/krystalcampioni/vue-hotel-datepicker) [![devDependencies Status](https://david-dm.org/krystalcampioni/vue-hotel-datepicker/dev-status.svg)](https://david-dm.org/krystalcampioni/vue-hotel-datepicker?type=dev)
-[![npm](https://img.shields.io/npm/dt/vue-hotel-datepicker.svg)](vue-hotel-datepicker)
-
 # vue-hotel-datepicker
-A responsive date range picker for Vue.js that displays the number of nights selected and allow several useful options like custom check-in/check-out rules, localisation support and more.
 
+A Vue.js date-range picker for hotel and accommodation booking flows. This repository contains a maintained/extended copy of the upstream component, with additional fixes contributed in the context of a production hospitality project.
+
+> **Contribution and attribution:** This is not an original project created from scratch by the repository owner. The component originated with [krystalcampioni/vue-hotel-datepicker](https://github.com/krystalcampioni/vue-hotel-datepicker) and its upstream contributors. My documented contributions in this copy include fixes for single-day date selection, including mobile behaviour, and closing the picker after a single-day selection. See the repository commit history for the implementation trail. Please retain the upstream project's attribution and licensing notices when reusing this code.
+
+## Overview
+
+A responsive date range picker for Vue.js that displays the number of nights selected and supports configurable check-in/check-out rules, localisation and other booking-oriented options.
 
 ![demo gif](https://github.com/krystalcampioni/vue-hotel-datepicker/blob/master/demo.gif?raw=true)
 
-
-
 ## Demo
-[https://krystalcampioni.github.io/vue-hotel-datepicker/](https://krystalcampioni.github.io/vue-hotel-datepicker/)
+
+[Live demo](https://krystalcampioni.github.io/vue-hotel-datepicker/)
 
 ## Installation
 
-#### NPM
-
-Install the package:
-
-```
+```bash
 npm install vue-hotel-datepicker --save
 ```
 
@@ -38,8 +34,7 @@ export default {
 <HotelDatePicker />
 ```
 
-
-## Props/Options
+## Props / options
 
 ### format
 
@@ -53,7 +48,7 @@ The date format string.
 - Type: `Date` or `String`
 - Default: `new Date()`
 
-The start view date. All the dates before this date will be disabled.
+The start view date. All dates before this date will be disabled.
 
 ### startingDateValue
 
@@ -64,10 +59,10 @@ The initial value of the start date.
 
 ### endDate
 
-- Type: `Date` or `String` or `Boolean`
+- Type: `Date`, `String` or `Boolean`
 - Default: `false`
 
-The end view date. All the dates after this date will be disabled.
+The end view date. All dates after this date will be disabled.
 
 ### endingDateValue
 
@@ -95,63 +90,63 @@ Maximum nights required to select a range of dates.
 - Type: `Array`
 - Default: `[]`
 
-An array of strings in this format: `YYYY-MM-DD`. All the dates passed to the list will be disabled.
+An array of date strings in `YYYY-MM-DD` format. All dates in the list will be disabled.
 
 ### disabledDaysOfWeek
 
 - Type: `Array`
 - Default: `[]`
 
-An array of strings in this format: `['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']`. All the days passed to the list will be disabled.
+An array of day names, for example `['Monday', 'Tuesday', 'Wednesday']`. All listed days will be disabled.
 
 ### allowedRanges
+
 - Type: `Array`
 - Default: `[]`
 
-An array of numbers. Example: `[7,10,14]`.
-After selecting the start date the calendar will be updated only allowing the checkout 7, 10 or 14 days after.
+An array of numbers. For example, `[7, 10, 14]`. After selecting the start date, the calendar will allow checkout only 7, 10 or 14 days later.
 
 ### enableCheckout
 
 - Type: `Boolean`
 - Default: `false`
 
-If `true`, allows the checkout on a disabled date.
-
+If `true`, allows checkout on a disabled date.
 
 ### hoveringTooltip
 
 - Type: `Boolean` or `Function`
 - Default: `true`
 
-Shows a tooltip with the number of nights when hovering a date.
+Shows a tooltip with the number of nights when hovering over a date.
 
 ### tooltipMessage
 
 - Type: `String`
-- Default `null`
+- Default: `null`
 
-If provided, it will override the default tooltip "X nights" with the text provided. You can use HTML in the string.
+If provided, overrides the default tooltip text (for example, "X nights"). The original component also permits HTML in this string; only use trusted content.
 
-## singleDateSelection
+### singleDateSelection
 
-- Type `boolean`
-- Default `false`
+- Type: `Boolean`
+- Default: `false`
 
-## showYear
+Enables selecting a single date instead of a date range.
 
-- Type `boolean`
-- Default `false`
+### showYear
 
-Shows the year next to the month
+- Type: `Boolean`
+- Default: `false`
 
-## keyboardFormats
+Shows the year next to the month.
 
-- Type `Array` of `String` or `Function`
-- Default `[]`
+### keyboardFormats
 
-Enables direct keyboard input. Parsing will be executed by `fecha.parse()` with provided format or by provided function. The first valid format will be used.
-Consider the fecha issue `https://github.com/taylorhakes/fecha/issues/22` when use it.
+- Type: `Array` of `String` or `Function`
+- Default: `[]`
+
+Enables direct keyboard input. Parsing is executed by `fecha.parse()` with the provided format or function. The first valid format is used. See the [fecha issue](https://github.com/taylorhakes/fecha/issues/22) for a related parsing consideration.
 
 ### i18n
 
@@ -172,28 +167,16 @@ i18n: {
 
 ## API
 
-### hideDatepicker()
-
-Hide datepicker
-
-### showDatepicker()
-
-Show datepicker
-
-### toggleDatepicker()
-
-Toggle datepicker
+- `hideDatepicker()` — hide the datepicker
+- `showDatepicker()` — show the datepicker
+- `toggleDatepicker()` — toggle visibility
 
 ## Events
 
-### checkInChanged
-Emitted every time a new check in date is selected with the new date as payload
-
-### checkOutChanged
-Emitted every time a new check out date is selected with the new date as payload
-
-### toggle
-Emitted when datepicker is showed/hided
+- `checkInChanged` — emitted when a new check-in date is selected; includes the selected date as payload
+- `checkOutChanged` — emitted when a new check-out date is selected; includes the selected date as payload
+- `toggle` — emitted when the datepicker is shown or hidden
 
 ## Credits
-This component was originally built as a Vue wrapper component for the [Hotel Datepicker](https://github.com/benitolopez/hotel-datepicker) by @benitolopez. Version 2.0.0 was completely rewritten with Vue, removing the original library, removing some features and introducing others.
+
+The original component was built as a Vue wrapper for [Hotel Datepicker](https://github.com/benitolopez/hotel-datepicker) by @benitolopez. The upstream Vue component is maintained at [krystalcampioni/vue-hotel-datepicker](https://github.com/krystalcampioni/vue-hotel-datepicker). This repository includes subsequent fixes and extensions; consult the commit history to distinguish those contributions from the original implementation.
